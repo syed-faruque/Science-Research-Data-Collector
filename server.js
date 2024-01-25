@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 
 app.use(session({secret: 'key', resave: false, saveUninitialized: true}));
 app.use(cors());
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + "/frontend"));
 app.use(parse.urlencoded({extended: true}));
 app.use(express.json());
 
