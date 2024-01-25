@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgrey;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 500px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 20px;
+            margin: 15px 0;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        input[type="submit"] {
+            background-color: green;
+            color: white;
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <form action="/log" method="post">
+
+        <label>Enter Username</label><br>
+        <input type="text" name="username"><br>
+        <label>Enter Password</label><br>
+        <input type="password" name="password"><br>
+        <input type="submit" value="Enter">
+
+    </form>
+
+</body>
+
+</html>

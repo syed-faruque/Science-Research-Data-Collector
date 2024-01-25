@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Homepage</title>
+    <style>
+        h1 {
+            color: darkslategrey;
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 50px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgrey;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: green;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            width: 200px;
+            font-size: 18px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Science Research Data Collector</h1>
+    <form action="/authentication" method="post">
+        <input type="submit" name="action" value="signup"><br>
+        <input type="submit" name="action" value="login"><br>
+        <input type="submit" name="action" value="administration"><br>
+    </form>
+</body>
+
+</html>

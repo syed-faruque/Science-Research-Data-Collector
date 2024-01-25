@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>All Users</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: lightgrey;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+            height: 100vh;
+            overflow-y: auto;
+            flex-direction: column;
+        }
+
+        #header {
+            background-color: lightgrey;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 24px;
+        }
+
+        #list_users {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 60%;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            padding: 12px 20px;
+            font-size: 18px;
+            background-color: green;
+            color: White;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <p>Here is a record of all users:</p>
+    </div>
+    <p id="list_users"></p><br>
+    <form action="/showlogs" method="post">
+        <label for="user">Choose a user to view their logs:</label><br>
+        <input type="text" name="user" id="user" required>
+        <input type="submit" value="View Logs">
+    </form>
+
+    <script>
+        let usernames;
+        const fetchData = async () => {
+            const response = await fetch('http://192.168.0.200:3000/getusers');
+            const data = await response.json();
+            usernames = data.usernames;
+            const usersparagraph = document.getElementById("list_users");
+            for (var i = 0; i < usernames.length; i++) {
+                usersparagraph.innerHTML += usernames[i] + "<br>";
+            }
+        };
+
+        fetchData();
+    </script>
+
+</body>
+
+</html>

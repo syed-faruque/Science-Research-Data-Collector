@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Previous Log History</title>
+    <style>
+        body {
+            font-size: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: lightgrey;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+            min-height: 100vh;
+            overflow-y: auto;
+            flex-direction: column;
+        }
+
+        #header {
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #last_log {
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <p>Your log has been added to the database:</p>
+    </div>
+    <p id="last_log"></p><br>
+
+    <script>
+
+        const fetchData = async () => {
+            const response = await fetch('http://192.168.0.200:3000/getprev');
+            const data = await response.json();
+            const last_log = data.info;
+            const logparagraph = document.getElementById("last_log");
+            logparagraph.innerHTML += last_log;
+        };
+        fetchData();
+
+    </script>
+</body>
+
+</html>

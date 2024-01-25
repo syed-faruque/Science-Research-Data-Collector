@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>LogBook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgrey;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        #welcome_message {
+            font-size: 24px;
+            color: darkslategray;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: dimgray;
+            text-align: center;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid lightgrey;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: forestgreen;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <p id="welcome_message">Welcome </p><br>
+    <p>Write down any data you collected</p>
+    <form action='/showprev' method="post">
+        <textarea rows="30" cols="100" name="information" placeholder="Enter your data here..."></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+
+        const fetchData = async () => {
+            const response = await fetch('http://192.168.0.200:3000/getusername');
+            const data = await response.json();
+            const username = data.username;
+            document.getElementById("welcome_message").textContent += username;
+        };
+
+        fetchData();
+
+
+    </script>
+
+</body>
+
+</html>
