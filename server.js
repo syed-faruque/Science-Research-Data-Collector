@@ -1,4 +1,4 @@
-//framework imports
+// import libraries
 const express = require("express");
 const parse = require('body-parser');
 const cors = require('cors');
@@ -20,12 +20,12 @@ const connection = mysql.createConnection({
 
 
 
-//instance of express application
+// instance of express application
 const app = express();
 
 
 
-//middleware
+// middleware
 app.use(session({secret: 'key', resave: false, saveUninitialized: true}));
 app.use(cors());
 app.use(express.static(__dirname + "/frontend"));
@@ -37,7 +37,7 @@ app.use(express.json());
 
 
 
-//handles initial homepage choice
+// handles initial homepage choice
 app.post('/authentication', (req, res) => {
     
     if (req.body.action == "signup") {
@@ -58,7 +58,7 @@ app.post('/authentication', (req, res) => {
 
 
 
-//checks the credentials entered during login phase
+// checks the credentials entered during login phase
 app.post('/log', (req, res) => {
     username = req.body.username;
     password = req.body.password;
@@ -77,7 +77,7 @@ app.post('/log', (req, res) => {
 
 
 
-//inserts sign up credentials into database
+// inserts sign up credentials into database
 app.post('/newuser', (req, res) => {
     username = req.body.username;
     password = req.body.password;
@@ -178,7 +178,7 @@ app.post('/showlogs', (req, res) =>{
 
 
 
-//sends JSON containing usernames to the client-side so the admin can see it
+// sends JSON containing usernames to the client-side so the admin can see it
 app.get('/getusers', (req, res) => {
 
     const getUsersQuery = "SELECT username FROM credentials";
