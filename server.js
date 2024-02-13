@@ -95,7 +95,7 @@ app.post('/newuser', (req, res) => {
 
 
 // sends back username from session store for the client side
-app.get('/getusername', (req, res)=>{
+app.get('/getusername', (req, res)=> {
     res.json({ username: req.session.username });
 });
 
@@ -123,7 +123,7 @@ app.post('/showprev', (req, res) => {
 
 
 // sends the previous log corresponding to the current user in the client side.
-app.get('/getprev', (req, res) =>{
+app.get('/getprev', (req, res) => {
     const information = req.session.last_log;
     res.json({ info: information });
 })
@@ -153,7 +153,7 @@ app.post('/admin', (req, res) => {
 
 
 // checks if the admin selected an existing user before sending the file to the previous logs
-app.post('/showlogs', (req, res) =>{
+app.post('/showlogs', (req, res) => {
     user = req.body.user;
     connection.query("SELECT * FROM credentials WHERE username = ?", [user], (err, results)=>{
         if (results.length > 0){
@@ -164,8 +164,6 @@ app.post('/showlogs', (req, res) =>{
             res.sendFile(__dirname + "/frontend/noexist.html");
         }
     })
-
-
 })
 
 
@@ -180,9 +178,7 @@ app.get('/getusers', (req, res) => {
     connection.query(getUsersQuery, (err, results) => {
         const usernames = results.map(result => result.username);
         res.json({ usernames: usernames });
-
     });
-
 })
 
 
@@ -192,7 +188,7 @@ app.get('/getusers', (req, res) => {
 
 
 // creates a list containing the selected user's previous logs and sends it back to client-side
-app.get('/getlogs', (req, res) =>{
+app.get('/getlogs', (req, res) => {
     const getInfoQuery = "SELECT information FROM credentials WHERE username = ?";
     connection.query(getInfoQuery, [req.session.desireduser], (err, results) => {
         const information = results[0].information;
@@ -204,7 +200,6 @@ app.get('/getlogs', (req, res) =>{
             console.log("no data");
         }
     });
-
 })
 
 
