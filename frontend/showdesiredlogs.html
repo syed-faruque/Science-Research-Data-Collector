@@ -40,6 +40,9 @@
         <p>Here is a list of past logs by your desired user:</p>
     </div>
     <p id="list_logs"></p><br>
+    <a href="http://192.168.0.200:3000">Go back to the homepage</a>
+
+
     <script>
         const fetchData = async () => {
             const response = await fetch('http://192.168.0.200:3000/getlogs');
@@ -50,10 +53,10 @@
                 logparagraph.innerHTML += list[i] + "<br><br><br>";
             }
         };
-
         fetchData();
-
     </script>
+
+
 </body>
 
 </html>
