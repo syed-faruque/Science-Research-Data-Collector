@@ -39,15 +39,16 @@
         <p>Your log has been added to the database:</p>
     </div>
     <p id="last_log"></p><br>
+    <a href="http://192.168.0.200:3000">Go back to the homepage</a>
 
     <script>
 
         const fetchData = async () => {
-            const response = await fetch('http://192.168.0.200:3000/getprev');
+            const response = await fetch('http://192.168.0.200:3000/getprev'); //fetches data from getprev endpoint
             const data = await response.json();
             const last_log = data.info;
             const logparagraph = document.getElementById("last_log");
-            logparagraph.innerHTML += last_log;
+            logparagraph.innerHTML += last_log; //updates the old HTML with the previous log
         };
         fetchData();
 
