@@ -1,4 +1,5 @@
-// import libraries
+
+//framework imports
 const express = require("express");
 const parse = require('body-parser');
 const cors = require('cors');
@@ -20,12 +21,12 @@ const connection = mysql.createConnection({
 
 
 
-// instance of express application
+//instance of express application
 const app = express();
 
 
 
-// middleware
+//middleware
 app.use(session({secret: 'key', resave: false, saveUninitialized: true}));
 app.use(cors());
 app.use(express.static(__dirname + "/frontend"));
@@ -37,7 +38,7 @@ app.use(express.json());
 
 
 
-// handles initial homepage choice
+//handles initial homepage choice
 app.post('/authentication', (req, res) => {
     
     if (req.body.action == "signup") {
@@ -58,7 +59,7 @@ app.post('/authentication', (req, res) => {
 
 
 
-// checks the credentials entered during login phase
+//checks the credentials entered during login phase
 app.post('/log', (req, res) => {
     username = req.body.username;
     password = req.body.password;
@@ -77,16 +78,20 @@ app.post('/log', (req, res) => {
 
 
 
-// inserts sign up credentials into database
+//inserts sign up credentials into database
 app.post('/newuser', (req, res) => {
     username = req.body.username;
     password = req.body.password;
     connection.query("SELECT * FROM credentials WHERE username = ?", [username], (err, results) => {
         if (results.length > 0) {
             res.sendFile(__dirname + "/frontend/exists.html");
-        } else {
+        } 
+        else if (password.length > 8){
             connection.query("Insert into credentials (username, password) values (?, ?)", [username, password]);
             res.sendFile(__dirname + "/frontend/success.html");
+        }
+        else{
+            res.sendFile(__dirname + "/frontend/toosmall.html");
         }
     });
 });
@@ -110,7 +115,7 @@ app.post('/showprev', (req, res) => {
     const currentDate = new Date();
     const options = {month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true};
     const formattedDate = currentDate.toLocaleString('en-US', options);
-    const info = req.body.information + ": added on " + formattedDate;
+    const info = req.body.information + "\n\nadded on " + formattedDate;
     sqlcommand = "UPDATE credentials SET information = CONCAT(COALESCE(information, ''), ?) WHERE username = ?";
     connection.query(sqlcommand, [info + " * ", req.session.username], (err, results) => { //appends the new log and adds ' * ' at the end of it
         req.session.last_log = info; //stores the last log in the user's session
@@ -178,7 +183,7 @@ app.post('/showlogs', (req, res) =>{
 
 
 
-// sends JSON containing usernames to the client-side so the admin can see it
+//sends JSON containing usernames to the client-side so the admin can see it
 app.get('/getusers', (req, res) => {
 
     const getUsersQuery = "SELECT username FROM credentials";
