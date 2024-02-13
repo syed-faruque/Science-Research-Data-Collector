@@ -4,7 +4,7 @@ You can use this website to keep track of data collected by multiple people. Thi
 
 # Inspiration
 
-My friend Haris knows I am good at programming applications, and so he asked me if I could create one that would allow him to efficiently manage data when working on his future group project. He explained that it would be too messy to try and organize data via google docs or word document, and he needed a system where each group member could simultaneously log observations and experimental data, and one that provided him the ability to access the logs of everyone in the group.
+My friend Haris knows I am good at programming applications, so he asked me if I could create one that would allow him to efficiently manage data when working on his future group project. He explained that it would be too messy to try and organize data via google docs or word document, and he needed a system where each group member could simultaneously log observations and experimental data, and one that provided him the ability to access the logs of everyone in the group.
 
 # How I Built It
 
